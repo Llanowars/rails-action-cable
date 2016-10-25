@@ -1,17 +1,18 @@
 <div class="container">
   <div class="text-center">
-    <%= @chatroom.topic %>
-    <% @chatroom.messages do |message| %>
+    <h3><%= @chatroom.topic %></h3>
+    <hr>
+    <% @chatroom.messages.each do |message| %>
       <div>
-        <%= message.content %>
-        <hr>
+        <p><%= message.content %></p>
       </div>
     <% end %>
 
     <hr>
 
-    <% simple_form_for[ @chatroom, @message ] do |f| %>
+    <%= simple_form_for([@chatroom, @message]) do |f| %>
       <%= f.input :content %>
+      <%= f.submit %>
     <% end %>
   </div>
 </div>
