@@ -1,19 +1,17 @@
 class MessagesController < ApplicationController
 
+  before_action :set_chatroom, only: [:create, :destroy]
+
   def create
-    raise
-    @chatroom = Chatroom.find(params[:chatroom_id])
     @message = Message.new(message_params)
-    @message.chatroom_id = @chatroom.id
-    @message.user_id = current_user.id
+    @message.chatroom = @chatroom
+    @message.user = current_user
     @message.save
     redirect_to chatroom_path(@chatroom)
   end
 
   def destroy
-    @chatroom = Chatroom.find(params[:chatroom_id])
     @message = Message.find(params[:id])
-    raise
     @message.destroy
     redirect_to chatroom_path(@chatroom)
   end
@@ -21,6 +19,10 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:content, :chatroom_id)
+    params.require(:message).permit(:content)
+  end
+
+  def set_chatroom
+    @chatroom = Chatroom.find(params[:chatroom_id])
   end
 end

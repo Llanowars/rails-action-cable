@@ -5,7 +5,7 @@
     <% @messages.each do |message| %>
       <div>
         <p><%= message.content %></p> 
-        <p><%= link_to "Delete", chatroom_message_path([@chatroom, message]), method: :delete %></p>
+        <p><%= link_to "Delete", chatroom_message_path(@chatroom, message), method: :delete %></p>
       </div>
     <% end %>
 
