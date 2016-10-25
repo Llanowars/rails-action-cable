@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="text-center">
+    <h1>The Rooms</h1>
+
+    <% @chatrooms.each do |chatroom| %>
+      <div>
+        <%= link_to chatroom.topic, chatroom_path(chatroom) %>
+      </div>
+    <% end %>
+
+    <hr>
+
+    <h3>Create your room</h3>
+
+    <%= simple_form_for(@chatroom) do |f| %>
+    <%= f.input :topic %>
+    <%= f.submit %>
+    <% end %>
+
+  </div>
+</div>
