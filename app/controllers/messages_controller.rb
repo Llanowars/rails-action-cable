@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         message: @message.content,
         user: @message.user.email
-      head :ok
+        head :ok
     end
     # redirect_to chatroom_path(@chatroom)
   end
