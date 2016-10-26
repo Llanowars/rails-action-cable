@@ -6,16 +6,17 @@
       <% @messages.each do |message| %>
         <div class="flexed">
           <% @user = User.find_by_id(message.user_id) %>
-          <p><%= @user.email  %></p>
-          <p><%= message.content %></p> 
-          <p><%= link_to "Delete", chatroom_message_path(@chatroom, message), method: :delete %></p>
+          <p><b><%= @user.email %></b><%= message.content %></p>
+          <!-- <p><%#= @user.email  %></p>
+          <p><%#= message.content %></p>  -->
+          <!-- <p><%#= link_to "Delete", chatroom_message_path(@chatroom, message), method: :delete %></p> -->
         </div>
       <% end %>
     </div>
 
     <hr>
 
-    <%= simple_form_for([@chatroom, @message]) do |f| %>
+    <%= simple_form_for([@chatroom, @message], remote: true) do |f| %>
       <%= f.input :content %>
       <%= f.submit %>
     <% end %>
