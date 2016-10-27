@@ -18,6 +18,13 @@ class MessagesController < ApplicationController
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
+    # if @message.destroy
+    #   ActionCable.server.broadcast 'messages',
+    #     message: @message.content,
+    #     user: @message.user.email,
+    #     destroyed: true
+    #     head :ok
+    # end
     redirect_to chatroom_path(@chatroom)
   end
 
