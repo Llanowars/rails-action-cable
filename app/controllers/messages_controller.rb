@@ -18,6 +18,8 @@ class MessagesController < ApplicationController
   def destroy
     @message = Message.find(params[:id])
     @message.destroy
+    add
+    # Trying to delete a message from action cable channel
     # if @message.destroy
     #   ActionCable.server.broadcast 'messages',
     #     message: @message.content,
